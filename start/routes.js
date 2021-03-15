@@ -1,7 +1,8 @@
 'use strict'
 
-const UserController = use('App/Controllers/Http/UserController')
-const ProjectController = use('App/Controllers/Http/ProjectController')
+const UserController = use('App/Controllers/Http/UserController');
+const ProjectController = use('App/Controllers/Http/ProjectController');
+const TaskController = use('App/Controllers/Http/TaskController');
 
 /*
 |--------------------------------------------------------------------------
@@ -27,4 +28,7 @@ Route.group(() => {
   Route.post('projects/create', 'ProjectController.create').middleware('auth');
   Route.delete('projects/destroy/:id', 'ProjectController.destroy').middleware('auth');
   Route.patch('projects/update/:id', 'ProjectController.update').middleware('auth');
+  Route.get('tasks/:id', 'TaskController.index').middleware('auth');
+  Route.post('tasks/:id/create', 'TaskController.create').middleware('auth');
+  Route.get('tasks/:project/done/:id', 'TaskController.done').middleware('auth');
 }).prefix('api/v1/');
